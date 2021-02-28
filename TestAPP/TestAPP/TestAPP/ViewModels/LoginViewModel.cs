@@ -22,11 +22,11 @@ namespace TestAPP.ViewModels
 
 		private async void Login()
 		{
-			if (string.IsNullOrEmpty(this.Email) && string.IsNullOrWhiteSpace(this.Email))
+			/*if (string.IsNullOrEmpty(this.Email) && string.IsNullOrWhiteSpace(this.Email))
 			{
 				await Application.Current.MainPage.DisplayAlert("Error", "Your Email is empty or incorrect. Check!", "Accept");
 				return;
-			}
+			}*/
 			if (string.IsNullOrEmpty(this.Password) && string.IsNullOrWhiteSpace(this.Password))
 			{
 				await Application.Current.MainPage.DisplayAlert("Error", "Your Password is empty or incorrect. Check!", "Accept");
