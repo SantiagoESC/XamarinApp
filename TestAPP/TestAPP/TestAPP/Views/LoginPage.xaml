@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="TestAPP.Views.LoginPage"
+             Title="Login"
+             Shell.NavBarIsVisible="False"
+             BackgroundImageSource="FondoTest"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+    <ContentPage.Content>
+        <ScrollView BindingContext="{Binding Login}">
+        <StackLayout>
+            <StackLayout Padding="10,200,-0,10" VerticalOptions="Center"  >
+                <StackLayout Opacity="0.5" >
+                        <Label
+                            FontSize="34"
+                            FontAttributes="Bold"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Login">
+                            
+                        </Label>
+
+                        <Entry
+                            class="email"
+                            Keyboard="Email"
+                            Placeholder="Email"
+                            BackgroundColor="BlueViolet"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding Email, Mode=TwoWay}"
+                            >
+                        </Entry>
+                        <Entry
+                            HorizontalTextAlignment="Center"
+                            IsPassword="True"
+                            Placeholder="Password"
+                            BackgroundColor="BlueViolet"       
+                            Text="{Binding Password, Mode=TwoWay}"
+                            >
+                        </Entry>
+                 </StackLayout>
+                <StackLayout
+                   Orientation="Horizontal" >
+                    <Label 
+                        VerticalOptions="Center"
+                        Text="Remember me"
+                        >                        
+                    </Label>
+                    <Switch
+                        OnColor="BlueViolet"
+                        ThumbColor="MistyRose"
+                        IsToggled="{Binding IsRemembered, Mode=TwoWay}"
+                        ></Switch>
+                </StackLayout>
+                <ActivityIndicator IsRunning="{Binding IsRunning, Mode=TwoWay}"></ActivityIndicator>
+                <StackLayout
+                    Margin="40,0">
+                    <Button
+                        BackgroundColor="BlueViolet"
+                        BorderRadius="23"
+                        HeightRequest="46"
+                        Text="Login"
+                        TextColor="White"
+                        Command="{Binding LoginCommand}"
+                        >
+                    </Button>
+
+                    <Button
+                        BackgroundColor="MediumVioletRed"
+                        BorderRadius="23"
+                        Text="Register"
+                        HeightRequest="46"
+                        TextColor="White"                        
+                        >
+                    </Button>
+                </StackLayout>
+                <StackLayout
+                    HorizontalOptions="Center"
+                    Orientation="Horizontal">
+                    <Image
+                        Source="facebook"
+                        WidthRequest="60">
+                        
+                    </Image>
+                    <Image
+                        Source="gmail"
+                        WidthRequest="60">
+                        
+                    </Image>
+                    <Image
+                        Source="instagram"
+                        WidthRequest="50">
+
+                    </Image>
+                </StackLayout>
+
+                    <Label
+                       HorizontalOptions="Center"
+                       TextColor="Blue"
+                       Text="Forgot your password?">
+
+                    </Label>
+                </StackLayout>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
