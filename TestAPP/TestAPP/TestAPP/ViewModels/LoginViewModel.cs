@@ -54,13 +54,25 @@ namespace TestAPP.ViewModels
 			{
 				this.IsRunning = true;
 				this.isEnabled = false;
-				await Application.Current.MainPage.DisplayAlert("Success", "Redirect to the app", "Accept");
+				this.Email = string.Empty;
+				this.Password = string.Empty;
+				//Redirigir a otra pagina.
+				//Antes de redirigir la pagina, obtenemos la instancia de la ListPage y la creamos para que no haya error.
+				MainViewModel.GetInstance().ListPage = new ListViewModel();
+				await Application.Current.MainPage.Navigation.PushAsync(new ListPage());
 			}
 		}
 		#endregion
 
 		#region Properties
-		public string Email { get; set; }
+		public string Email
+		{
+			get { return this.email; }
+			set
+			{
+				SetProperty(ref this.email, value);
+			}
+		}
 
 		public string Password
 		{
@@ -75,7 +87,7 @@ namespace TestAPP.ViewModels
 		public bool IsRemembered
 		{
 			get { return this.isEnabled; }
-			set { SetProperty(ref this.isEnabled, value); }		
+			set { SetProperty(ref this.isEnabled, value); }
 		}
 		#endregion
 
