@@ -26,7 +26,7 @@
                             class="email"
                             Keyboard="Email"
                             Placeholder="Email"
-                            BackgroundColor="BlueViolet"
+                            BackgroundColor="MediumVioletRed"
                             HorizontalTextAlignment="Center"
                             Text="{Binding Email, Mode=TwoWay}"
                             >
@@ -35,7 +35,7 @@
                             HorizontalTextAlignment="Center"
                             IsPassword="True"
                             Placeholder="Password"
-                            BackgroundColor="BlueViolet"       
+                            BackgroundColor="MediumVioletRed"       
                             Text="{Binding Password, Mode=TwoWay}"
                             >
                         </Entry>
@@ -48,7 +48,7 @@
                         >                        
                     </Label>
                     <Switch
-                        OnColor="BlueViolet"
+                        OnColor="MediumVioletRed"
                         ThumbColor="MistyRose"
                         IsToggled="{Binding IsRemembered, Mode=TwoWay}"
                         ></Switch>
@@ -57,12 +57,13 @@
                 <StackLayout
                     Margin="40,0">
                     <Button
-                        BackgroundColor="BlueViolet"
+                        BackgroundColor="MediumVioletRed"
                         BorderRadius="23"
                         HeightRequest="46"
                         Text="Login"
                         TextColor="White"
                         Command="{Binding LoginCommand}"
+                        IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
                         >
                     </Button>
 
@@ -71,7 +72,8 @@
                         BorderRadius="23"
                         Text="Register"
                         HeightRequest="46"
-                        TextColor="White"                        
+                        TextColor="White"
+                        IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
                         >
                     </Button>
                 </StackLayout>
