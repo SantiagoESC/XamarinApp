@@ -40,17 +40,16 @@ namespace TestAPP.ViewModels
 		#region Methods
 		public async void LoadDrinks()
 		{
-			var response = await this.apiService.GetList<Drink>(
-				"https://www.thecocktaildb.com",
-				"/api",
-				"/json/v1/1/filter.php?c=Cocktail");
-			if (!response.IsSuccess)
+			var response =  apiService.MakeRequest("GET", "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail");
+			Console.WriteLine(response.StatusCode);
+			var a =response.StatusCode;
+			if (response.StatusCode != System.Net.HttpStatusCode.OK)
 			{
-				await Application.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
+				await Application.Current.MainPage.DisplayAlert("Error", response.StatusDescription, "Accept");
 				return;
 			}
 
-			var drinks =(List<Drink>) response.Result;
+			var drinks =(List<Drink>) response.;
 			this.Drinks = new ObservableCollection<Drink>(drinks);
 		}
 		#endregion
