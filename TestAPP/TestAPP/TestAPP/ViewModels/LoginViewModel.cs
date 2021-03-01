@@ -12,7 +12,6 @@ namespace TestAPP.ViewModels
 	public class LoginViewModel : BaseViewModel
 	{
 		#region Commands
-		//public Command LoginCommand { get; }
 
 		public ICommand LoginCommand
 		{
@@ -66,38 +65,17 @@ namespace TestAPP.ViewModels
 		public string Password
 		{
 			get { return this.password; }
-			set
-			{
-				if (this.password != value)
-				{
-					this.password = value;
-					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(this.Password)));
-				}
-			}
+			set { SetProperty(ref this.password, value); }
 		}
 		public bool IsRunning
 		{
 			get { return this.isRunning; }
-			set
-			{
-				if (this.isRunning != value)
-				{
-					this.isRunning = value;
-					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(this.IsRunning)));
-				}
-			}
+			set { SetProperty(ref this.isRunning, value); }
 		}
 		public bool IsRemembered
 		{
 			get { return this.isEnabled; }
-			set
-			{
-				if (this.isEnabled != value)
-				{
-					this.isEnabled = value;
-					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(this.isEnabled)));
-				}
-			}
+			set { SetProperty(ref this.isEnabled, value); }		
 		}
 		#endregion
 
@@ -122,7 +100,6 @@ namespace TestAPP.ViewModels
 		#endregion
 
 		#region Events
-		public event PropertyChangedEventHandler PropertyChanged;
 
 		#endregion
 		private async void OnLoginClicked(object obj)
