@@ -9,8 +9,7 @@ using Newtonsoft.Json;
 using Plugin.Connectivity;
 using System.Net;
 using System.IO;
-//using Domain;
-
+ 
 namespace TestAPP.Services
 {
 	public class ApiService
@@ -155,7 +154,7 @@ namespace TestAPP.Services
 			}
 		}
 
-		public HttpWebResponse MakeRequest(string httpMethod, string url)
+		public string MakeRequest(string httpMethod, string url)
 		{
 			var request = (HttpWebRequest)WebRequest.Create(url);
 			request.Method = httpMethod;
@@ -165,16 +164,115 @@ namespace TestAPP.Services
 			{
 				using (System.Net.WebResponse response = request.GetResponse())
 				{
-					return (HttpWebResponse)response;
+					using(Stream strReader = response.GetResponseStream())
+					{
+						using(StreamReader objReader = new StreamReader(strReader))
+						{
+							var a= JsonFormatter(objReader.ReadToEnd());
+							return objReader.ReadToEnd();
+						}
+					}
+					//return (HttpWebResponse)response;
 
 				}
 			}
 			catch (WebException ex)
 			{
-
+				Console.WriteLine(ex);
 			}
 			return null;
 		}
+
+		public static string JsonFormatter(string json)
+		{
+			StringBuilder builder = new StringBuilder();
+
+			bool quotes = false;
+
+			bool ignore = false;
+
+			int offset = 0;
+
+			int position = 0;
+
+			if (string.IsNullOrEmpty(json))
+			{
+				return string.Empty;
+			}
+
+			json = json.Replace(Environment.NewLine, "").Replace("\t", "");
+
+			foreach (char character in json)
+			{
+				switch (character)
+				{
+					case '"':
+						if (!ignore)
+						{
+							quotes = !quotes;
+						}
+						break;
+					case '\'':
+						if (quotes)
+						{
+							ignore = !ignore;
+						}
+						break;
+				}
+
+				if (quotes)
+				{
+					builder.Append(character);
+				}
+				else
+				{
+					switch (character)
+					{
+						case '{':
+						case '[':
+							builder.Append(character);
+							builder.Append(Environment.NewLine);
+							builder.Append(new string(' ', ++offset * 4));
+							break;
+						case '}':
+						case ']':
+							builder.Append(Environment.NewLine);
+							builder.Append(new string(' ', --offset * 4));
+							builder.Append(character);
+							break;
+						case ',':
+							builder.Append(character);
+							builder.Append(Environment.NewLine);
+							builder.Append(new string(' ', offset * 4));
+							break;
+						case ':':
+							builder.Append(character);
+							builder.Append(' ');
+							break;
+						default:
+							if (character != ' ')
+							{
+								builder.Append(character);
+							}
+							break;
+					}
+
+					position++;
+				}
+			}
+
+			return builder.ToString().Trim();
+		}
+
+		public List<T> GetList<T>(string json)
+		{
+			var list = JsonConvert.DeserializeObject<List<T>>(json);
+
+			return list;
+
+		}
+
+
 
 		public async Task<Response> GetList<T>(
 			string urlBase,

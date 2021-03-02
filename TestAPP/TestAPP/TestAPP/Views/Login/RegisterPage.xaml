@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestAPP.Views.Login.RegisterPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Register"/>
+
+            <StackLayout>
+                <Label Text="Please complete the registracion with your personal data."></Label>
+
+                <StackLayout>
+                    <Label Text="Full Name"/>
+                    <Entry></Entry>
+                    <Label Text="Full Name"/>
+                    <Entry></Entry>
+                    <Label Text="Full Name"/>
+                    <Entry></Entry>
+                    <Label Text="Full Name"/>
+                    <Entry></Entry>
+                    <Label Text="Full Name"/>
+                    <Entry></Entry>
+
+                </StackLayout>
+                <StackLayout>
+                    <Button Text="Register"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

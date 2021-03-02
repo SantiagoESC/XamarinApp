@@ -62,6 +62,11 @@ namespace TestAPP.ViewModels
 				await Application.Current.MainPage.Navigation.PushAsync(new ListPage());
 			}
 		}
+
+		public void Register()
+		{
+
+		}
 		#endregion
 
 		#region Properties

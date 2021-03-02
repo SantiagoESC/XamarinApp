@@ -8,6 +8,7 @@
         <StackLayout 
             BindingContext="{Binding List}"
             Padding="5">
+
             <Label Text="List Page!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />

@@ -10,7 +10,6 @@ namespace TestAPP.ViewModels
 		#region ViewModels
 		public LoginViewModel Login { get; set; }
 		public ListViewModel ListPage{ get; set; }
-
 		#endregion
 
 		#region Command
